@@ -16,10 +16,11 @@ def save_to_firestore(jobs):
             job_ref = db.collection('jobs').document(job['link'])
             if not job_ref.get().exists:
                 job_ref.set(job)
+                print("saved")
             else:
                 print("duplicated")
-        except:
-            print("Error !")
+        except Exception as e:
+            print("Error ! : ",e)
         
 
 if __name__ == '__main__':
