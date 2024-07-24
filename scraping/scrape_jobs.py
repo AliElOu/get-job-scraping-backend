@@ -1,12 +1,15 @@
 import sys
 import os
 import emploi_scrape
+import rekrute_scrape
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from firebase.firebase_config import db
 
 
 def scrape_jobs():
-    jobs = emploi_scrape.scrap_jobs()
+    jobs1 = emploi_scrape.scrap_jobs()
+    jobs2 = rekrute_scrape.scrap_jobs()
+    jobs = jobs1 + jobs2
     return jobs
 
 

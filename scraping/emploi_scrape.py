@@ -4,7 +4,7 @@ from selenium.webdriver.chrome.options import Options
 import base64
 
 chrome_options = Options()
-#chrome_options.add_argument("--headless")  
+chrome_options.add_argument("--headless")  
 
 def encode_link(link):
     encoded_bytes = base64.urlsafe_b64encode(link.encode("utf-8"))
