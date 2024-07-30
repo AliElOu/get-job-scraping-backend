@@ -43,6 +43,7 @@ def data_organization(arg):
             'company': j[1],
             'location': [l for l in j if l.split()[0] == "Région"][0],
             'desc': j[2],
+            'posted_date': j[-3],
             'competences': [y for y in j if y.split()[0] == "Compétences"][0].split(":")[1:][0] if [y for y in j if y.split()[0] == "Compétences"] else '',
             'link': encode_link(j[-1])} for j in data]
     return output
