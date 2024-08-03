@@ -1,6 +1,7 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
+from datetime import datetime
 import base64
 
 chrome_options = Options()
@@ -41,9 +42,9 @@ def data_organization(arg):
     output = [{'image':j[-2],
             'title': j[0],
             'company': j[1],
-            'location': [l for l in j if l.split()[0] == "Région"][0],
+            'location': [l for l in j if l.split()[0] == "Région"][0].split(": ")[1],
             'desc': j[2],
-            'posted_date': j[-3],
+            'posted_date': datetime.strptime(j[-3], "%d.%m.%Y").strftime("%Y-%m-%d"),
             'competences': [y for y in j if y.split()[0] == "Compétences"][0].split(":")[1:][0] if [y for y in j if y.split()[0] == "Compétences"] else '',
             'link': encode_link(j[-1])} for j in data]
     return output

@@ -1,5 +1,6 @@
 from selenium import webdriver
 from selenium.webdriver.common.by import By
+from datetime import datetime
 from selenium.webdriver.chrome.options import Options
 import base64
 
@@ -46,7 +47,7 @@ def data_organization(arg):
             'company': "",
             'location': j[1].split(" | ")[1],
             'desc': j[3],
-            'posted_date': [y for y in j if y.split()[0] == "Publication"][0].split()[3],
+            'posted_date': datetime.strptime([y for y in j if y.split()[0] == "Publication"][0].split()[3], "%d/%m/%Y").strftime("%Y-%m-%d"),
             'competences': [y for y in j if y.split()[0] == "Fonction"][0].split(":")[1:][0] + " /" + [y for y in j if y.split()[0] == "Secteur"][0].split(":")[1:][0],
             'link': encode_link(j[-1])} for j in data]
     return output
